@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val icoDecoder = IcoDecoder()
+        val icoDecoder = IcoDecoder(this)
 
         findViewById<ImageView>(R.id.iconHnSystem).load("https://news.ycombinator.com/favicon.ico")
         findViewById<ImageView>(R.id.iconHn).load("https://news.ycombinator.com/favicon.ico") {

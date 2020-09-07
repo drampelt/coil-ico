@@ -1,5 +1,6 @@
 package com.danielrampelt.coil.ico
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import coil.bitmap.BitmapPool
@@ -12,11 +13,13 @@ import okio.BufferedSource
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-class IcoDecoder : Decoder {
+class IcoDecoder(context: Context) : Decoder {
     companion object {
         private const val ICO_HEADER_SIZE = 6
         private const val ICO_ENTRY_SIZE = 16
     }
+
+    private val resources = context.applicationContext.resources
 
     override fun handles(source: BufferedSource, mimeType: String?): Boolean {
         val peek = source.peek()
@@ -86,7 +89,7 @@ class IcoDecoder : Decoder {
         val bitmap = BitmapFactory.decodeByteArray(decodeBytes, 0, decodeBytes.size, BitmapFactory.Options().apply {
             inPreferredConfig = options.config
         })
-        val drawable = BitmapDrawable(options.context.resources, bitmap)
+        val drawable = BitmapDrawable(resources, bitmap)
         return DecodeResult(drawable, false)
     }
 
