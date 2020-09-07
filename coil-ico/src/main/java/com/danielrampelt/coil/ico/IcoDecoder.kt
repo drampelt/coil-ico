@@ -1,12 +1,12 @@
 package com.danielrampelt.coil.ico
 
-import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import coil.bitmap.BitmapPool
 import coil.decode.DecodeResult
 import coil.decode.Decoder
 import coil.decode.Options
+import coil.size.PixelSize
 import coil.size.Size
 import okio.BufferedSource
 import java.nio.ByteBuffer
@@ -22,7 +22,8 @@ class IcoDecoder : Decoder {
         val peek = source.peek()
         if (peek.readShortLe() != 0.toShort()) return false
         if (peek.readShortLe() != 1.toShort()) return false
-        if (peek.readShortLe() > 256) return false
+        val numImages = peek.readShortLe()
+        if (numImages <= 0 || numImages > 256) return false
         return true
     }
 
@@ -32,16 +33,24 @@ class IcoDecoder : Decoder {
         size: Size,
         options: Options
     ): DecodeResult {
+        val pixelSize = size as? PixelSize
+
         val peek = source.peek()
         peek.skip(4)
         val numImages = peek.readShortLe()
 
-        val images = mutableListOf<IconDirEntry>()
-        for (i in 0 until numImages) {
-            images += IconDirEntry.parse(peek)
+        var image = IconDirEntry.parse(peek)
+        for (i in 1 until numImages) {
+            // Choose image that best matches preferred size, or otherwise just largest image since max is only 256x256
+            if (pixelSize != null && image.widthPixels >= pixelSize.width && image.heightPixels >= pixelSize.height) {
+                break
+            } else {
+                val currentImage = IconDirEntry.parse(peek)
+                if (currentImage.widthPixels * currentImage.heightPixels > image.widthPixels * image.heightPixels) {
+                    image = currentImage
+                }
+            }
         }
-
-        val image = images.first()
 
         val imageBytes = ByteArray(image.size)
         source.skip(image.offset.toLong())
