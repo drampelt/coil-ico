@@ -9,13 +9,83 @@
     >
 
     <TextView
+        android:id="@+id/labelHnSystem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="HN (PNG)\nSystem"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconHnSystem"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#DEDEDE"
+        app:layout_constraintTop_toBottomOf="@+id/labelHnSystem"
+        app:layout_constraintStart_toStartOf="@+id/labelHnSystem"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/labelHn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HN (PNG)\nCustom"
+        app:layout_constraintStart_toEndOf="@+id/labelHnSystem"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconHn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#DEDEDE"
+        app:layout_constraintTop_toBottomOf="@+id/labelHn"
+        app:layout_constraintStart_toStartOf="@+id/labelHn"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/labelGoogleSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Google (BMP)\nSystem"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelHn"
+        android:layout_margin="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconGoogleSystem"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#DEDEDE"
+        app:layout_constraintTop_toBottomOf="@+id/labelGoogleSystem"
+        app:layout_constraintStart_toStartOf="@+id/labelGoogleSystem"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/labelGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Google (BMP)\nCustom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelGoogleSystem"
+        android:layout_margin="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconGoogle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#DEDEDE"
+        app:layout_constraintTop_toBottomOf="@+id/labelGoogle"
+        app:layout_constraintStart_toStartOf="@+id/labelGoogle"
+        android:layout_marginTop="16dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
