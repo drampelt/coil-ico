@@ -2,7 +2,16 @@
 
 A simple ICO decoder for [Coil](https://github.com/coil-kt/coil).
 
-Provides ICO decoding for Android versions where it is not available (< API 21), and improves it for versions where it is. Android 5.0+ supports ICO decoding, but will only choose the first image in the file which may not be the desired one.
+## Android ICO Support
+
+ICO decoding is supported to a certain extent on most API levels, but this library makes it work more consistently across older versions.
+
+|API Level|Support|
+|---|---|
+|14|Partial support for single BMP image|
+|16|Single BMP image|
+|19|Multiple PNG or BMP images, only the first image in the file will be used|
+|24|Full support for multiple PNG or BMP images|
 
 
 |API 16|API 21|
