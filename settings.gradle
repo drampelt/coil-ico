@@ -1,0 +1,3 @@
+rootProject.name = "Coil ICO Decoder"
+include ':app'
+include ':coil-ico'
